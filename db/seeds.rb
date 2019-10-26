@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create([
-                      {
-                        username: 'glhc',
-                        first_name: 'Patrick',
-                        last_name: 'Horne',
-                        email: 'patrickahorne@gmail.com',
-                        password_digest: BCrypt::Password.create('Veeam123!')
-                      }
+  {
+    username: 'glhc',
+    first_name: 'Patrick',
+    last_name: 'Horne',
+    email: 'patrickahorne@gmail.com',
+    password_digest: BCrypt::Password.create('Veeam123!')
+  }
 ])
