@@ -1,10 +1,14 @@
-<h1>Pages#home</h1>
 
-<section class="container">
-  <div class="fixed-top">
-    <img class="banner" src="https://image.freepik.com/free-photo/table-with-some-vegetables_1112-333.jpg" class="img-fluid" alt="Responsive image">
-  </div>
-</section>
+<div class="splash h-75">
+  <h1>RecipeDB</h1>
+      <div class="search-bar">
+        <%= form_with(url: "/search", method: "get") do %>
+          <%= label_tag(:q, "Search for:") %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag("Search") %>
+        <% end %>
+      </div>
+</div>
 
 <div>
   <% if @logged_in_user.nil? %>
