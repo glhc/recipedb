@@ -5,6 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+seed_recipe_data =[
+  {
+    recipe_name => 'Scrambled Eggs',
+    recipe_ingredients => ['Eggs', 'Milk', 'Butter'],
+    recipe_instructions => ['Crack eggs', 'Whisk eggs', 'Add milk', 'Fry eggs', 'Serve']
+  }, {
+    recipe_name => 'Cereal',
+    recipe_ingredients => ['Cereal', 'Milk'],
+    recipe_instructions => ['Pour Cereal into bowl', 'Add Milk', 'Enjoy!']
+  }, {
+    recipe_name => 'PB&J Sandwich',
+    recipe_ingredients => ['Bread', 'Peanut Butter', 'Jam'],
+    recipe_instructions => ['Spread peanut butter on one slice of bread', 'Spread jam on the other slice of bread', 'Make a sandwich', 'Enjoy!']
+  }
+]
+
+
 
 users = User.create([
   {
@@ -15,3 +32,4 @@ users = User.create([
     password_digest: BCrypt::Password.create('Veeam123!')
   }
 ])
+
