@@ -4,7 +4,7 @@ class CreateInstructions < ActiveRecord::Migration[6.0]
       t.text :content
       t.integer :step_number
       t.references :recipe, null: false, foreign_key: true
-
+      
       t.timestamps
     end
   end

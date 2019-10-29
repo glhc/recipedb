@@ -5,7 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-seed_recipe_data = [
+Instruction.destroy_all
+Recipe.destroy_all
+Ingredient.destroy_all
+User.destroy_all
+
+seed_data = [
   {
     :recipe_name => 'Scrambled Eggs',
     :recipe_ingredients => ['Eggs', 'Milk', 'Butter'],
@@ -21,21 +26,25 @@ seed_recipe_data = [
   }
 ]
 
-seed_recipe_data.each do |entry|
+# seed all the data in db
+seed_data.each do |entry|
+
   this_recipe = Recipe.create!(
-    :title => entry.recipe_name
+    :title => entry[:recipe_name]
   )
-  entry.recipe_instructions.each do |item|
+  entry[:recipe_instructions].each_index do |index|
     Instruction.create!(
-      :content => item,
-      :recipe_id => this_recipe.id
+      :content => entry[index],
+      :step_number => index + 1,
+      :recipe_id => this_recipe[:id]
     )
   end
   
-  entry.recipe_ingredients.each do |item|
-    Ingredient.create!(
+  entry[:recipe_ingredients].each do |item|
+    this_ingredient = Ingredient.create!(
       :name => item
     )
+    this_recipe.ingredients << this_ingredient
   end
 end
 
@@ -48,4 +57,16 @@ users = User.create!([
     password_digest: BCrypt::Password.create('Veeam123!')
   }
 ])
+
+
+mock_layer1 = [
+  {
+    id: 'String',  // unique 10-digit hex string
+    title: 'String',
+    instructions: [ { text: 'String' } ],
+    ingredients: [ { text: 'String' } ],
+    partition: ('train'|'test'|'val'),
+    url: String
+  }
+]
 
