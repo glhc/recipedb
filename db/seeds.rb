@@ -61,7 +61,7 @@ users = User.create!([
 
 mock_layer1 = [
   {
-    id: 'String',  // unique 10-digit hex string
+    id: 'String',  # unique 10-digit hex string
     title: 'String',
     instructions: [ { text: 'String' } ],
     ingredients: [ { text: 'String' } ],

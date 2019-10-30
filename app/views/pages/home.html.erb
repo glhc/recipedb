@@ -1,21 +1,25 @@
 
 <div class="splash h-75">
-  <h1>RecipeDB</h1>
-      <div class="search-bar">
-        <%= form_with(url: "/search", method: "get") do %>
-          <%= label_tag(:q, "Search for:") %>
-          <%= text_field_tag(:q) %>
-          <%= submit_tag("Search") %>
-        <% end %>
-      </div>
-</div>
-
-<div>
-  <% if @logged_in_user.nil? %>
-    <h2>Sign in</h2>
-    <li><%= link_to("Login", controller: "sessions", action: "new") %></li>
-  <% else %>
-    <h2> Welcome back, <%= @logged_in_user.first_name %></h2>
-    <li><%= link_to("Logout", login_path, :method => :delete) %></li>
-  <% end %>
+  <header class="container row">
+  <h1 class="col-4">RecipeDB</h1>
+  <div class="auth col-3">
+    <% if @logged_in_user.nil? %>
+      <h4>Sign in</h4>
+      <li><%= link_to("Login", controller: "sessions", action: "new") %></li>
+    <% else %>
+      <h4> Welcome back, <%= @logged_in_user.first_name %></h4>
+      <li><%= link_to("Logout", login_path, :method => :delete) %></li>
+    <% end %>
+  </div>
+  
+  </header>
+  
+  
+  
+  <div class="search-bar">
+    <%= form_with(url: "/search", method: "get") do %>
+      <%= text_field_tag(:ingredient_name) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
 </div>
