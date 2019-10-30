@@ -7,11 +7,23 @@ h1 {
 }
 
 .splash {
+  flex-direction: column;
   background-image: url("https://previews.123rf.com/images/manuta/manuta1901/manuta190100102/115735196-variety-of-green-vegetables-and-fruits-on-the-grey-background.jpg");
     background-repeat:no-repeat;
     background-size:cover;
+  align-content: flex-start;
 }
 
-.auth {
-  float: right;
+header {
+  justify-content: space-between;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }

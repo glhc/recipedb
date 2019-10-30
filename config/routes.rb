@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   delete '/login' => 'sessions#destroy'
   delete '/login' => 'sessions#destroy'
   get '/search' => 'search#search'
+  get '/results' => 'search#results'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
