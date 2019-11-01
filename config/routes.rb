@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get '/results' => 'pages#results'
   
   
-  post '/signup' => 'pages#create_recipe'
   get '/signup' => 'pages#sign_up'
   get '/signup/failure' => 'pages#signup_failure'
   get '/signup/success' => 'pages#signup_success'

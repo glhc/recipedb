@@ -1,13 +1,28 @@
 <h1>Results</h1>
 
-<div class="card" style="width: 18rem;">
-  <img src="http://placekitten.com/200/300" class="card-img-top" alt="Food pic">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+
 <div class="container card-holder">
-  <% %>
+  <% @retrieved.each do |item| %>
+    <div class="card" style="width: 18rem;">
+      <img src="http://placekitten.com/200/300" class="card-img-top" alt="Food pic">
+      <div class="card-body">
+        <h5 class="card-title">Ingredients</h5>
+        <p class="card-text">
+          <ul>
+            <% item.ingredients.all.each do |ingredient| %>
+              <li><%= ingredient[:name] %></li>
+            <% end %>
+          </ul>
+        </p>
+        <h5 class="card-title">Instructions</h5>
+        <p class="card-text">
+          <ol>
+            <% item.instructions.all.each do |instruction| %>
+              <li><%= instruction[:content] %></li>
+            <% end %>
+          </ol>
+        </p>
+      </div>
+    </div>
+  <% end %>  
 </div>

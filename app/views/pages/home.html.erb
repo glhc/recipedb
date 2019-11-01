@@ -4,10 +4,12 @@
 <div class="splash container-fluid d-flex h-75">
   <header class="row">
     <h1 class="col-3">RecipeDB</h1>
-    <div class="auth col-1">
+    <div class="auth col-3">
       <% if @logged_in_user.nil? %>
         <%= button_to("Login", controller: "sessions", action: "new") %>
-        <button class="btn btn-success" action="/signup"></button>
+        <form class = "btn btn-success" action="/signup">
+          <button>Sign Up</button>
+        </form>
       <% else %>
         <h4> Welcome back, <%= @logged_in_user.first_name %></h4>
         <%= button_to("Logout", login_path, :method => :delete) %>

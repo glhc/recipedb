@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     end
 
     # place to store recipes found based on ingredients possessed
-    retrieved = []
+    @retrieved = []
 
     # put results here from recipe function
     @results = []
@@ -37,13 +37,8 @@ class PagesController < ApplicationController
     else  
       # For each ingredient in the pantry, find all recipes
       session[:pantry].each do |id, name|
-        this_ingredient = Ingredient.find(id)
+        this_ingredient = Ingredient.find_by(name: name)
         @retrieved.push(this_ingredient.recipes.all)
-      end
-
-      # Translate the recipes into objects fully populated with the data they need
-      retrieved.each do |item|
-        recipe(item[:id])
       end
 
     end
@@ -88,7 +83,7 @@ class PagesController < ApplicationController
     
     until @ingredients_finished do
       Ingredients.create(
-        
+
       )
     end
 
