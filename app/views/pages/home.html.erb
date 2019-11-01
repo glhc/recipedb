@@ -1,4 +1,6 @@
-
+  <% if flash[:user_created] %>
+    <div class="notice"><%= flash[:user_created] %></div>
+  <% end %>
 <div class="splash container-fluid d-flex h-75">
   <header class="row">
     <h1 class="col-3">RecipeDB</h1>
@@ -20,7 +22,6 @@
   </div>
 </div>
 <%= button_to("Results", { action: "results"}, {:method => :get, :form_class => "btn btn-success"}) %>
-<button class="btn btn-success">Show me some recipes!</button>
 <div>
   <% if session[:pantry] %>
     <ul>
@@ -28,7 +29,5 @@
         <li><%= name %></li>
        <% end %>
     </ul>
-  <% else %>
-    <div><%= flash[:error] %></div>
   <% end %>
 </div>

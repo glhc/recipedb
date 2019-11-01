@@ -1,0 +1,10 @@
+<div class="container">
+
+  <h1> Create a recipe </h1>
+  <%= form_with(url: "/create", method: 'post') do %>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Jane">
+      </div>
+  <% end %>
+</div>

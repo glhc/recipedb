@@ -4,7 +4,7 @@ class SearchController < ApplicationController
     result = Ingredient.find_by(name: params[:ingredient_name])
     if result
       @pantry = result
-      session[:pantry] [result[:id]] = result[:name]
+      session[:pantry][result[:id]] = result[:name]
     else
       flash[:error] = "No result found!"
     end
