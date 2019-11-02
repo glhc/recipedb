@@ -5,8 +5,15 @@ class PagesController < ApplicationController
     end
     @logged_in_user = User.find_by :id => session[:user_id]
   end
-
+  
   def results
+    
+    # place to store recipes found based on ingredients possessed
+    @retrieved = []
+    
+    # put results here from recipe function
+    @results = []
+    
     # create recipe objects for easy rendering in results view
     def recipe (recipe_id, name)
       if recipe_id
@@ -20,25 +27,25 @@ class PagesController < ApplicationController
           :instructions => this_recipe.instructions.all,
           :ingredients => this_recipe.ingredients.all
       }
-
       # return the object
       creation
     end
 
-    # place to store recipes found based on ingredients possessed
-    @retrieved = []
-
-    # put results here from recipe function
-    @results = []
 
     if session[:pantry].nil?
       puts "Redirected to index because session[:pantry] is nil."
       redirect_to '/'
-    else  
+    else
+      p "pantry:"
+      p session[:pantry]  
       # For each ingredient in the pantry, find all recipes
       session[:pantry].each do |id, name|
         this_ingredient = Ingredient.find_by(name: name)
-        @retrieved.push(this_ingredient.recipes.all)
+        these_recipes = this_ingredient.recipes.all
+        these_recipes.each do |item|
+          @retrieved.push(item)
+        end
+
       end
 
     end
@@ -47,78 +54,61 @@ class PagesController < ApplicationController
   # create a recipe
   def create_recipe
     @logged_in_user = User.find_by :id => session[:user_id]
-    
-    # If the user isn't logged in, turn around bucko
-    if @logged_in_user.nil?
-      flash[:error] = "You're not logged in, taking you back"
-      redirect_to '/'
-    else
+    @userid = @logged_in_user[:id].to_i
+
       # Create the recipes
-      Recipe.create(
+      this_recipe = Recipe.create(
         :title => params[:title],
-        :user_id => params[:user_id].to_i
+        :user_id => @logged_in_user[:id].to_i
       )
       
       # Create the instructions for the recipe
-      params[:recipe_instructions].each_index do |index|
-        Instruction.create!(
-          :content => entry[:recipe_instructions][index],
+      params[:instruction].each_with_index do |index|
+        this_instruction = Instruction.create!(
+          :content => params[:instruction][index],
           :step_number => index + 1,
           :recipe_id => this_recipe[:id]
         )
+
+        this_recipe.instructions << this_instruction
       end
 
+
       # Create the ingredients for the recipe
-      params[:recipe_ingredients].each do |item|
+      params[:ingredient].each_with_index do |index|
         this_ingredient = Ingredient.create!(
           :name => item
         )
+
         this_recipe.ingredients << this_ingredient
       end
-    end
+
+      redirect_to '/create/ingredients'
   end
 
-  def create_recipe_ingredients
-    @ingredients_finished = false
-    
-    until @ingredients_finished do
-      Ingredients.create(
-
-      )
-    end
-
-    redirect_to '/instructions'
-  end
-
-  def recipe_form
+  def render_sign_up
   end
 
   def sign_up
-    user = User.create(
+    @user = User.create(
       :username => params[:username],
       :first_name => params[:firstName],
       :last_name => params[:lastName],
       :email => params[:email],
       :password_digest => BCrypt::Password.create(params[:password])
     )
-
-    if user
-      redirect_to "/signup/success"
-    else
-      redirect_to "/signup/failure"
-    end
+    flash[:user_created] = @user[:first_name]
+  redirect_to '/'
   end
 
-  def signup_failure
-    sleep(5)
-    redirect_to '/signup'
+  def recipe
+    @recipe = Recipe.find_by(id: params[:id].to_i)
   end
 
-  def signup_success
-    sleep(5)
-    redirect_to '/login'
+  def recipe_destroy
+    recipe = Recipe.find(params[:id].to_i)
+    recipe.destroy
+    redirect_to '/'
   end
 
-  def about
-  end
 end

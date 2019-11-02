@@ -8,8 +8,7 @@ class SearchController < ApplicationController
     else
       flash[:error] = "No result found!"
     end
-
-    
+  redirect_to '/'
   end
 
   def results

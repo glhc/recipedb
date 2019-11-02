@@ -42,7 +42,7 @@ seed_data.each do |entry|
   end
   
   entry[:recipe_ingredients].each do |item|
-    this_ingredient = Ingredient.create!(
+    this_ingredient = Ingredient.find_or_create_by(
       :name => item
     )
     this_recipe.ingredients << this_ingredient

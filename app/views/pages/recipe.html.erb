@@ -1,0 +1,15 @@
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">
+      <ol>
+      <% @recipe.instructions.all.each do |item| %>
+        
+        <li><%= item %></li>
+      <% end %>
+      <ol>
+    </p>
+    <a href="/recipe/<%= @recipe[:id]/delete %>" class="btn btn-danger">Delete</a>
+  </div>
+</div>

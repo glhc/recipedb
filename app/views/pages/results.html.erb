@@ -1,11 +1,12 @@
 <h1>Results</h1>
 
 
-<div class="container card-holder">
+<div class="container-fluid card-holder">
   <% @retrieved.each do |item| %>
     <div class="card" style="width: 18rem;">
-      <img src="http://placekitten.com/200/300" class="card-img-top" alt="Food pic">
+      <img src="http://placekitten.com/300/200" class="card-img-top" alt="Food pic">
       <div class="card-body">
+        <h3><%= item[:title] %></h3>
         <h5 class="card-title">Ingredients</h5>
         <p class="card-text">
           <ul>

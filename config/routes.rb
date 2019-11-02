@@ -8,16 +8,19 @@ Rails.application.routes.draw do
   delete '/login' => 'sessions#destroy'
   post '/' => 'search#search'
   get '/results' => 'pages#results'
+
+  get '/recipe/:id' => 'pages#recipe'
+  get '/recipe/:id/delete' => 'pages#recipe_destroy'
   
-  
-  get '/signup' => 'pages#sign_up'
+  get '/signup' => 'pages#render_sign_up'
+  post 'signup' => 'pages#sign_up'
   get '/signup/failure' => 'pages#signup_failure'
   get '/signup/success' => 'pages#signup_success'
   
-  get '/create/' => 'pages#recipe_form'
-  post '/create/' => 'pages#recipe_create'
-  get '/create/ingredients' => 'pages#recipe_ingredients'
-  post '/create/ingredients' => 'pages#create_ingredients'
+  get '/create/' => 'pages#createrecipe'
+  post '/create_recipe' => 'pages#create_recipe'
+  get '/create/ingredients' => 'pages#create_recipe_ingredients'
+  post '/create/ingredients' => 'pages#create_recipe_ingredients'
   get '/create/instructions' => 'pages#recipe_instructions'
   post'/create/instructions' => 'pages#create_instructions'
   get '/create/success' => 'pages#recipe_success'

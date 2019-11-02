@@ -1,6 +1,5 @@
-<% if flash[:user_created] %>
-  <div class="notice"><%= flash[:user_created] %></div>
-<% end %>
+<div class="notice"><%= flash[:user_created] %></div>
+
 <div class="splash container-fluid d-flex h-75">
   <header class="row">
     <h1 class="col-3">RecipeDB</h1>
@@ -14,6 +13,7 @@
         <h4> Welcome back, <%= @logged_in_user.first_name %></h4>
         <%= button_to("Logout", login_path, :method => :delete) %>
       <% end %>
+      <%= button_to("Create a recipe", { action: "createrecipe"}, {:method => :get, :form_class => "btn btn-success"}) %>
     </div>
   </header>
   
@@ -24,7 +24,10 @@
     <% end %>
   </div>
 </div>
-<%= button_to("Results", { action: "results"}, {:method => :get, :form_class => "btn btn-success"}) %>
+<form class = "btn btn-success" action="/results">
+  <button>Results</button>
+</form>
+
 <div>
   <% if session[:pantry] %>
     <ul>
