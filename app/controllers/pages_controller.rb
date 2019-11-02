@@ -57,33 +57,35 @@ class PagesController < ApplicationController
     @userid = @logged_in_user[:id].to_i
 
       # Create the recipes
-      this_recipe = Recipe.create(
+      @this_recipe = Recipe.create(
         :title => params[:title],
         :user_id => @logged_in_user[:id].to_i
       )
       
+      @counter = 0
       # Create the instructions for the recipe
-      params[:instruction].each_with_index do |index|
+      params[:instruction].each do |item|
+        @counter += 1
         this_instruction = Instruction.create!(
-          :content => params[:instruction][index],
-          :step_number => index + 1,
-          :recipe_id => this_recipe[:id]
+          :content => item,
+          :step_number => @counter,
+          :recipe_id => @this_recipe[:id]
         )
 
-        this_recipe.instructions << this_instruction
+        @this_recipe.instructions << this_instruction
       end
 
 
       # Create the ingredients for the recipe
-      params[:ingredient].each_with_index do |index|
-        this_ingredient = Ingredient.create!(
+      params[:ingredient].each do |item|
+        this_ingredient = Ingredient.find_or_create_by(
           :name => item
         )
 
-        this_recipe.ingredients << this_ingredient
+        @this_recipe.ingredients << this_ingredient
       end
-
-      redirect_to '/create/ingredients'
+      flash[:user_create] = "Recipe created!"
+      # redirect_to '/'
   end
 
   def render_sign_up
