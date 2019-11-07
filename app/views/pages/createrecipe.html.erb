@@ -32,8 +32,10 @@ $(document).ready(function() {
 
   instruction = `<input type="text" name="instruction[]" class="form-control" id="instruction[]" aria-describedby="firstName">`;
 
-  $('#more-ingredients').on('click', function() {
+
+  $('#more-ingredients').on('click', function(e) {
     $('.ingredients').append(ingredient);
+    e.preventDefault();
   });
 
   $('#more-instructions').on('click', function() {
