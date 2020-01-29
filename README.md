@@ -1,6 +1,6 @@
 # RecipeDB
 
-RecipeDB is a website that suggests recipes to you based on the ingredients that you have lying around.  
+RecipeDB is a website that suggests recipes based on the ingredients that you have lying around.  
 This project builds upon the [Recipe1M+](http://pic2recipe.csail.mit.edu/) dataset created and [published](http://pic2recipe.csail.mit.edu/tpami19.pdf) by researchers at MIT.
 
 ## Features
