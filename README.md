@@ -5,16 +5,24 @@ RecipeDB builds upon the [Recipe1M+](http://pic2recipe.csail.mit.edu/) dataset c
 
 ## Features
 
-- Pantries
-  - Store the ingredients you have on hand
-- Accounts
-  - To remember your favourites, what's in your pantry and more for next time.
-- Pictures
-  - Taste with your eyes before your mouth!
-- Over 1 Million Recipes
-  - So you never get bored
+### Pantry
+
+Tell RecipeDB about the ingredients you have on hand, so that it can suggest 
+some ideas!
+
+### Accounts
+
+To remember your favourites, what's in your pantry and more for next time.
+
+### Pictures
+
+Taste with your eyes before your mouth!
+
+### Over 1 Million Recipes
+
+So you never get bored
   
-# Getting Started
+## Getting Started
 
 1. Sign Up
 2. Build out your pantry
